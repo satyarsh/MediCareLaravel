@@ -36,9 +36,8 @@
                 <p class="text-gray-400">Please Register Here</p>
             </div>
 
-            <form action="{{ url('/login') }}" method="POST" class="space-y-6 slide-up">
+            <form action="{{ url('/register') }}" method="POST" class="space-y-6 slide-up">
                 @csrf
-                
                 <!-- Email Field -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
@@ -46,13 +45,28 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-gray-500"></i>
                         </div>
-                        <input id="email" name="email" type="email" 
+                        <input id="email" name="email" type="email" value="{{ old('email') }}"
                             class="bg-gray-700 text-white block w-full pl-10 pr-3 py-2.5 rounded-lg border border-gray-600 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
                             placeholder="you@example.com" required autofocus>
-                    </div>
+                </div>
                     @error('email')
                         <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
                     @enderror
+                <!-- Username Field -->
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-300 mb-1 mt-2">Username</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-gray-500"></i>
+                        </div>
+                        <input id="name" name="username" type="text" value="{{ old('username') }}"
+                            class="bg-gray-700 text-white block w-full pl-10 pr-3 py-2.5 rounded-lg border border-gray-600 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
+                            placeholder="Enter Your Username" required autofocus>
+                    </div>
+                    @error('username')
+                        <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
+                    @enderror
+                </div>
                 </div>
 
                 <!-- Password Field -->
@@ -65,8 +79,23 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-lock text-gray-500"></i>
                         </div>
+                        
                         <input id="password" name="password" type="password"
                             class="bg-gray-700 text-white block w-full pl-10 pr-3 py-2.5 rounded-lg border border-gray-600 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
+                            placeholder="••••••••" required>
+                    </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1 mt-1">
+                        <label for="password" class="block text-sm font-medium text-gray-300">Password Confirmation</label>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-500"></i>
+                        </div>
+                        
+                        <input id="password" name="password" type="password"
+                            class="bg-gray-700 text-white block w-full pl-10 mb-2 pr-3 py-2.5 rounded-lg border border-gray-600 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
                             placeholder="••••••••" required>
                     </div>
                     @error('password')
@@ -75,7 +104,7 @@
                 </div>
 
                 <!-- Remember Me -->
-                <div class="flex items-center">
+                <div class="flex items-center mb-2">
                     <input id="remember_me" name="remember" type="checkbox" 
                         class="h-4 w-4 text-green-500 border-gray-600 rounded bg-gray-700 focus:ring-green-500">
                     <label for="remember_me" class="ml-2 block text-sm text-gray-300">
@@ -91,6 +120,15 @@
                     </button>
                 </div>
             </form>
+
+        <!-- validation errors -->
+        @if ($errors->any())
+        <ul class="px-4 py-2 bg-red-100 mt-10 mb-10">
+            @foreach ($errors->all() as $error)
+            <li class="my-2 text-red-500">{{ $error }}</li>
+            @endforeach
+        </ul>
+        @endif
 
     <!-- Footer -->
     <footer class="bg-gray-800 py-4 mt-auto">

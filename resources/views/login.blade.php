@@ -46,7 +46,7 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-gray-500"></i>
                         </div>
-                        <input id="email" name="email" type="email" 
+                        <input id="email" name="email" type="email" value="{{ old('email') }}"
                             class="bg-gray-700 text-white block w-full pl-10 pr-3 py-2.5 rounded-lg border border-gray-600 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
                             placeholder="you@example.com" required autofocus>
                     </div>
@@ -54,7 +54,7 @@
                         <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
                     @enderror
                 </div>
-
+                
                 <!-- Password Field -->
                 <div>
                     <div class="flex items-center justify-between mb-1">
@@ -120,6 +120,15 @@
             </div>
         </div>
     </main>
+
+    <!-- validation errors -->
+    @if ($errors->any())
+      <ul class="px-4 py-2 bg-red-100">
+        @foreach ($errors->all() as $error)
+          <li class="my-2 text-red-500">{{ $error }}</li>
+        @endforeach
+      </ul>
+    @endif
 
     <!-- Footer -->
     <footer class="bg-gray-800 py-4 mt-auto">

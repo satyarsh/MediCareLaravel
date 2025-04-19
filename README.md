@@ -24,7 +24,8 @@ Coming Soon!
 
 *   PHP >= 8.2
 *   Composer
-*   MariaDB or other compatible database
+*   Laravel >= 12.0
+*   Mysql/MariaDB or other compatible databases that Laravel support
 
 ### Installation
 
@@ -58,6 +59,11 @@ Coming Soon!
 
     ```bash
     php artisan db:seed
+    ```
+
+7. Serve the application to Localhost 
+    ```bash
+    php artisan serve
     ```
 <!-- 7. Install NPM dependencies
 
