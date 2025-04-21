@@ -50,18 +50,12 @@ Coming Soon!
     ```bash
     php artisan key:generate
     ```
-5.  Run database migrations:
+5.  Run database migrations and seed it with some fake data:
 
     ```bash
-    php artisan migrate
+    php artisan migrate:fresh --seed
     ```
-6.  Seed the database (optional, if you have seeders):
-
-    ```bash
-    php artisan db:seed
-    ```
-
-7. Serve the application to Localhost 
+6. Serve the application to Localhost 
     ```bash
     php artisan serve
     ```
@@ -79,4 +73,3 @@ Coming Soon!
 ### Database Configuration
 
 Update the `.env` file with your database credentials:
-
