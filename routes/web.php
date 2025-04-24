@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+Route::get('/test', function () {
+    return view('admin.panel');
+})->name('test');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('guest')->controller(AuthController::class)->group(function () {

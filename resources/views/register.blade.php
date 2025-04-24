@@ -52,18 +52,18 @@
                     @error('email')
                         <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
                     @enderror
-                <!-- Username Field -->
+                <!-- Name Field -->
                 <div>
-                    <label for="username" class="block text-sm font-medium text-gray-300 mb-1 mt-2">Username</label>
+                    <label for="name" class="block text-sm font-medium text-gray-300 mb-1 mt-2">Name</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-user text-gray-500"></i>
                         </div>
-                        <input id="name" name="username" type="text" value="{{ old('username') }}"
+                        <input id="name" name="name" type="text" value="{{ old('name') }}"
                             class="bg-gray-700 text-white block w-full pl-10 pr-3 py-2.5 rounded-lg border border-gray-600 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
-                            placeholder="Enter Your Username" required autofocus>
+                            placeholder="Enter Your Name" required autofocus>
                     </div>
-                    @error('username')
+                    @error('name')
                         <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
                     @enderror
                 </div>
@@ -87,14 +87,14 @@
 
                 <div>
                     <div class="flex items-center justify-between mb-1 mt-1">
-                        <label for="password" class="block text-sm font-medium text-gray-300">Password Confirmation</label>
+                        <label for="password_confirmation" class="block text-sm font-medium text-gray-300">Password Confirmation</label>
                     </div>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-lock text-gray-500"></i>
                         </div>
                         
-                        <input id="password" name="password" type="password"
+                        <input id="password_confirmation" name="password_confirmation" type="password"
                             class="bg-gray-700 text-white block w-full pl-10 mb-2 pr-3 py-2.5 rounded-lg border border-gray-600 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
                             placeholder="••••••••" required>
                     </div>

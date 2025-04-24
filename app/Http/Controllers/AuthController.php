@@ -25,7 +25,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validated = $request->validate([
-          'username' => 'required|string|max:255',
+          'name' => 'required|string|max:255',
           'email' => 'required|email|unique:users',
           'password' => 'required|string|min:8|confirmed',
         ]);
@@ -36,7 +36,7 @@ class AuthController extends Controller
   
         return redirect()->route('index');
     }
-  
+
     public function login(Request $request)
     {
         $validated = $request->validate([
