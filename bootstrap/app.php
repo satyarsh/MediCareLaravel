@@ -15,7 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo('/login');
         // Using a closure...
         $middleware->redirectGuestsTo(fn (Request $request) => route('login'));
+
+        #Using custom middleware's
+        // $middleware->use([App\Http\Middleware\AdminMiddleWare::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
-    })->create();
+    }
+    )->create();
