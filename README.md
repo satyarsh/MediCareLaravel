@@ -8,6 +8,8 @@ Coming Soon!
 ## Features
 Coming Soon!
 
+<!-- GIT TEST -->
+
 <!-- *   **Prescription Management:**  Upload, view, and process prescriptions securely.
 *   **Inventory Management:** Track stock levels, add new products, and manage suppliers.
 *   **Product Catalog:** Browse and search for medications and health products.
