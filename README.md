@@ -8,8 +8,6 @@ Coming Soon!
 ## Features
 Coming Soon!
 
-<!-- GIT TEST -->
-
 <!-- *   **Prescription Management:**  Upload, view, and process prescriptions securely.
 *   **Inventory Management:** Track stock levels, add new products, and manage suppliers.
 *   **Product Catalog:** Browse and search for medications and health products.
@@ -55,6 +53,7 @@ Coming Soon!
 5.  Run database migrations and seed it with some fake data:
 
     ```bash
+    php artisan migrate
     php artisan migrate:fresh --seed
     ```
 6. Serve the application to Localhost 
