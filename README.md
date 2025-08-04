@@ -19,7 +19,6 @@ Coming Soon!
 ## Getting Started
 
 
-
 ### Prerequisites
 
 *   PHP >= 8.2
@@ -74,3 +73,10 @@ Coming Soon!
 ### Database Configuration
 
 Update the `.env` file with your database credentials:
+
+
+### Usage
+After running the seeder, you can log in to your application's admin panel using the following default credentials:
+
+*   **Email :** `admin@email.com`
+*   **Password :** `admin1234`

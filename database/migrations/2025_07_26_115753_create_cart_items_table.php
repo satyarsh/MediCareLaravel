@@ -9,7 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cart_items', function (Blueprint $table) {
-            $table->id();
+            $table->id('CartItemID');
+            $table->unsignedBigInteger('PatientID');
+            $table->unsignedBigInteger('MedicationID');
+            $table->foreign('PatientID')->references('PatientID')->on('patients');
+            $table->foreign('MedicationID')->references('MedicationID')->on('medications');
+            $table->unsignedInteger('Quantity');
+            $table->decimal('Price', 8, 2); // Price at the time of adding to cart
             $table->timestamps();
         });
     }

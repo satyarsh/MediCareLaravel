@@ -9,7 +9,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->id('OrderID');
+            $table->unsignedBigInteger('PatientID');
+            $table->foreign('PatientID')->references('PatientID')->on('patients');
+            $table->string('OrderNumber')->unique();
+            $table->decimal('TotalAmount', 10, 2);
+            $table->enum('Status', ['pending', 'processing', 'shipped', 'completed', 'cancelled'])->default('pending');
+            $table->text('ShippingAddress');
+            $table->string('PaymentMethod')->nullable();
+            $table->enum('PaymentStatus', ['paid', 'unpaid'])->default('unpaid');
             $table->timestamps();
         });
     }
