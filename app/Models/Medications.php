@@ -32,6 +32,7 @@ class Medications extends Model
         'ManufacturerID',
         'RequiresPrescription',
         'DefaultUnitPrice',
+        'Stock',
     ];
 
     /**

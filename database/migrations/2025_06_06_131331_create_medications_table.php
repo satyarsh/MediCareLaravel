@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ManufacturerID');
             $table->boolean('RequiresPrescription')->default(true);
             $table->decimal('DefaultUnitPrice', 10, 2)->nullable();
+            $table->unsignedInteger('Stock')->default(0);
             $table->foreign('ManufacturerID')->references('ManufacturerID')->on('manufacturers');
         });
     }

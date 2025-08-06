@@ -19,8 +19,8 @@ class CartItems extends Model
         'Price',
     ];
 
-    public function medicine()
+    public function medication()
     {
-        return $this->belongsTo(Medicine::class);
+        return $this->belongsTo(Medications::class, 'MedicationID', 'MedicationID');
     }
 }

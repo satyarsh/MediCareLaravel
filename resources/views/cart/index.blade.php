@@ -47,7 +47,10 @@
             <h1 class="text-2xl font-bold text-green-400">
                 <i class="fas fa-shopping-cart mr-2"></i> My Cart
             </h1>
-            <a href="{{ route('medicines.index') }}" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition flex items-center">
+
+            {{-- TODO --}}
+            {{-- {{ route('medicines.index') }} --}}
+            <a href="#" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition flex items-center">
                 <i class="fas fa-pills mr-2"></i> Continue Shopping
             </a>
         </div>
@@ -71,7 +74,10 @@
                 </div>
                 <p class="text-xl mb-4">Your cart is empty</p>
                 <p class="text-gray-400 mb-6">Add medicines to your cart and they will appear here</p>
-                <a href="{{ route('medicines.index') }}" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition inline-flex items-center">
+
+                {{-- TODO --}}
+                {{-- {{ route('medicines.index') }} --}}
+                <a href="#" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition inline-flex items-center">
                     <i class="fas fa-pills mr-2"></i> Browse Medicines
                 </a>
             </div>
@@ -251,7 +257,10 @@
                         </div>
                         
                         <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-8">
-                            <a href="{{ route('medicines.index') }}" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition text-center flex-1 flex items-center justify-center">
+
+                            {{-- TODO --}}
+                            {{-- {{ route('medicines.index') }} --}}
+                            <a href="#" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition text-center flex-1 flex items-center justify-center">
                                 <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
                             </a>
                             <button type="submit" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition font-medium flex-1 flex items-center justify-center">
@@ -267,7 +276,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 py-4 mt-auto">
         <div class="container mx-auto px-4 text-center text-gray-400 text-sm">
-            &copy; 2023 MediCare. All rights reserved.
+            &copy; 2025 MediCare. All rights reserved.
         </div>
     </footer>
 
