@@ -5,14 +5,15 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleWare;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
 
-// Route::get('/test', function () {
-//     return view('admin.panel');
-// })->name('test');
+//Index
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -21,7 +22,6 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
     Route::post('/register', 'register')->name('register');
     Route::get('/login', 'showLogin')->name('show.login');
     Route::post('/login', 'login')->name('login');
-
 });
 
 Route::middleware('auth')->controller(AuthController::class)->group(function () {
@@ -45,7 +45,6 @@ Route::middleware('auth')->controller(CartController::class)->group(function () 
 Route::middleware('auth')->group(function () {
 
     Route::middleware([AdminMiddleWare::class])->controller(AdminController::class)->group(function () {
-    Route::get('/admin', 'showAdmin')->name('show.admin.panel');
+        Route::get('/admin', 'showAdmin')->name('show.admin.panel');
     });
-
 });

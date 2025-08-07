@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Prescriptions extends Model
 {
@@ -23,7 +24,7 @@ class Prescriptions extends Model
      * @var bool
      */
     public $timestamps = true;
-    
+
     protected $fillable = [
         'PatientID',
         'DoctorID',

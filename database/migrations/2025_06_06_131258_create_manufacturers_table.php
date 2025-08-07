@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->id('ManufacturerID'); // Auto-incrementing primary key
             $table->string('Name', 100);
-            $table->string('ContactPhone', 15)->nullable();
+            $table->string('ContactPhone', 33)->nullable();
         });
     }
 

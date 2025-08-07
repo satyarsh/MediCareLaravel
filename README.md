@@ -17,7 +17,19 @@ Coming Soon!
 *   **Reporting:** Generate reports on sales, inventory, and other key metrics. -->
 
 ## Getting Started
+You can use docker-compose to deploy the MariaDB database. <br>check the `docker/` folder for the docker-compose.yaml
+```bash
+cd docker
+docker-compose up
+#Ctrl + C to exit
 
+#Or
+cd docker
+docker-compose up -d
+
+#To Delete
+docker-compose down 
+```
 
 ### Prerequisites
 
@@ -59,16 +71,7 @@ Coming Soon!
     ```bash
     php artisan serve
     ```
-<!-- 7. Install NPM dependencies
 
-    ```bash
-    npm install
-    ```
-8. Compile assets using Vite:
-
-    ```bash
-    npm run dev
-    ``` -->
 
 ### Database Configuration
 

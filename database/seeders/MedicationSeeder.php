@@ -9,9 +9,6 @@ use Faker\Factory as Faker;
 
 class MedicationSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $medications = [
@@ -23,6 +20,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '500mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 5.99,
+                'Stock' => 150
             ],
             [
                 'Name' => 'Lisinopril',
@@ -32,6 +30,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '20mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 7.49,
+                'Stock' => 200
             ],
             [
                 'Name' => 'Atorvastatin',
@@ -41,6 +40,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '40mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 12.99,
+                'Stock' => 89
             ],
             [
                 'Name' => 'Levothyroxine',
@@ -50,6 +50,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '100mcg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 6.79,
+                'Stock' => 75
             ],
             [
                 'Name' => 'Metformin',
@@ -59,6 +60,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '500mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 8.29,
+                'Stock' => 120
             ],
             [
                 'Name' => 'Simvastatin',
@@ -68,6 +70,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '20mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 9.49,
+                'Stock' => 95
             ],
             [
                 'Name' => 'Omeprazole',
@@ -77,6 +80,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '20mg',
                 'RequiresPrescription' => false,
                 'DefaultUnitPrice' => 4.99,
+                'Stock' => 180
             ],
             [
                 'Name' => 'Amlodipine',
@@ -86,6 +90,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '5mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 11.79,
+                'Stock' => 65
             ],
             [
                 'Name' => 'Albuterol',
@@ -95,6 +100,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '90mcg/actuation',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 24.99,
+                'Stock' => 45
             ],
             [
                 'Name' => 'Hydrochlorothiazide',
@@ -104,6 +110,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '25mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 5.29,
+                'Stock' => 110
             ],
             [
                 'Name' => 'Sertraline',
@@ -113,6 +120,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '50mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 10.49,
+                'Stock' => 88
             ],
             [
                 'Name' => 'Montelukast',
@@ -122,6 +130,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '10mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 13.29,
+                'Stock' => 72
             ],
             [
                 'Name' => 'Furosemide',
@@ -131,6 +140,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '40mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 7.99,
+                'Stock' => 135
             ],
             [
                 'Name' => 'Escitalopram',
@@ -140,6 +150,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '10mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 11.49,
+                'Stock' => 93
             ],
             [
                 'Name' => 'Pantoprazole',
@@ -149,6 +160,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '40mg',
                 'RequiresPrescription' => false,
                 'DefaultUnitPrice' => 6.29,
+                'Stock' => 160
             ],
             [
                 'Name' => 'Citalopram',
@@ -158,6 +170,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '20mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 9.79,
+                'Stock' => 78
             ],
             [
                 'Name' => 'Tramadol',
@@ -167,6 +180,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '50mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 14.99,
+                'Stock' => 42
             ],
             [
                 'Name' => 'Warfarin',
@@ -176,6 +190,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '5mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 8.49,
+                'Stock' => 67
             ],
             [
                 'Name' => 'Trazodone',
@@ -185,6 +200,7 @@ class MedicationSeeder extends Seeder
                 'Strength' => '50mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 10.99,
+                'Stock' => 85
             ],
             [
                 'Name' => 'Gabapentin',
@@ -194,23 +210,71 @@ class MedicationSeeder extends Seeder
                 'Strength' => '300mg',
                 'RequiresPrescription' => true,
                 'DefaultUnitPrice' => 12.29,
+                'Stock' => 91
             ],
+            [
+                'Name' => 'Ibuprofen',
+                'GenericName' => 'Ibuprofen',
+                'Manufacturer' => 'Johnson & Johnson',
+                'Form' => 'Tablet',
+                'Strength' => '400mg',
+                'RequiresPrescription' => false,
+                'DefaultUnitPrice' => 3.99,
+                'Stock' => 250
+            ],
+            [
+                'Name' => 'Cetirizine',
+                'GenericName' => 'Cetirizine',
+                'Manufacturer' => 'UCB Pharma',
+                'Form' => 'Tablet',
+                'Strength' => '10mg',
+                'RequiresPrescription' => false,
+                'DefaultUnitPrice' => 5.49,
+                'Stock' => 195
+            ],
+            [
+                'Name' => 'Losartan',
+                'GenericName' => 'Losartan',
+                'Manufacturer' => 'Merck',
+                'Form' => 'Tablet',
+                'Strength' => '50mg',
+                'RequiresPrescription' => true,
+                'DefaultUnitPrice' => 9.99,
+                'Stock' => 125
+            ],
+            [
+                'Name' => 'Prednisone',
+                'GenericName' => 'Prednisone',
+                'Manufacturer' => 'Upjohn',
+                'Form' => 'Tablet',
+                'Strength' => '20mg',
+                'RequiresPrescription' => true,
+                'DefaultUnitPrice' => 4.79,
+                'Stock' => 108
+            ]
         ];
 
-        $faker = Faker::create('fa_IR');
+        $faker = Faker::create('en_US');
 
-        //Debugging
-        #$phoneNumber = $faker->phoneNumber;
-        #$phoneNumber = $faker->unique()->phoneNumber();
-        #echo "Generated Phone Number: " . $phoneNumber . "\n";
-        #echo "Truncated Phone Number: " . substr($phoneNumber, 0, 15) . "\n";
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('medications')->truncate();
+        DB::table('manufacturers')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $createdManufacturers = [];
 
         foreach ($medications as $medicationData) {
+            $manufacturerName = $medicationData['Manufacturer'];
 
-            $manufacturerId = DB::table('manufacturers')->insertGetId([
-                'Name' => $medicationData['Manufacturer'],
-                'ContactPhone' => $faker->unique()->phoneNumber()
-            ]);
+            if (isset($createdManufacturers[$manufacturerName])) {
+                $manufacturerId = $createdManufacturers[$manufacturerName];
+            } else {
+                $manufacturerId = DB::table('manufacturers')->insertGetId([
+                    'Name' => $manufacturerName,
+                    'ContactPhone' => $faker->unique()->phoneNumber()
+                ]);
+                $createdManufacturers[$manufacturerName] = $manufacturerId;
+            }
 
             DB::table('medications')->insert([
                 'Name' => $medicationData['Name'],
@@ -220,6 +284,7 @@ class MedicationSeeder extends Seeder
                 'ManufacturerID' => $manufacturerId,
                 'RequiresPrescription' => $medicationData['RequiresPrescription'],
                 'DefaultUnitPrice' => $medicationData['DefaultUnitPrice'],
+                'Stock' => $medicationData['Stock']
             ]);
         }
     }

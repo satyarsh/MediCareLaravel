@@ -16,7 +16,7 @@ class AdminMiddleWare
     public function handle(Request $request, Closure $next): Response
     {
         if(!auth()->check() || !auth()->user()->is_admin) {
-        abort(404); //Using 404 instead of 403 to not give attrackers any extra info (Extra Safety)
+        abort(404); //Using 404 instead of 403 to not give attackers any extra info (Extra Safety)
         }
 
         return $next($request);
