@@ -27,9 +27,7 @@
                     <!-- Desktop Navigation -->
                     <nav class="hidden md:flex space-x-8 fade-in">
                         <a href="#" class="text-white hover:text-green-400 transition duration-300">Home</a>
-                        <a href="#" class="text-white hover:text-green-400 transition duration-300">Products</a>
-                        {{-- <a href="#" class="text-white hover:text-green-400 transition duration-300">Services</a>
-                        <a href="#" class="text-white hover:text-green-400 transition duration-300">Prescriptions</a> --}}
+                        <a href="{{ route('medication.index') }}" class="text-white hover:text-green-400 transition duration-300">Medications</a>
                         <a href="#" class="text-white hover:text-green-400 transition duration-300">About Us</a>
                         <a href="#" class="text-white hover:text-green-400 transition duration-300">Contact</a>
                     </nav>
@@ -128,7 +126,7 @@
                     <p class="text-xl text-gray-300 mb-8">Fast, reliable, and affordable pharmacy services for you and
                         your family.</p>
                     <div class="flex space-x-4">
-                        <a href="#"
+                        <a href="#"{{ route('cart.add') }}
                             class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Shop
                             Now</a>
                         <a href="#"
@@ -206,101 +204,126 @@
         </div>
     </section>
 
-        <!-- Featured Products -->
-        <section class="py-16">
-            <div class="container mx-auto px-4">
-                <div class="flex justify-between items-center mb-12">
-                    <h2 class="text-3xl font-bold fade-in">Featured Products</h2>
-                    <a href="#" class="text-green-400 hover:text-green-500 transition duration-300 fade-in">View All
-                        <span>&rarr;</span></a>
-                </div>
+<!-- Featured Products -->
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-12">
+            <h2 class="text-3xl font-bold fade-in">Featured Products</h2>
+            <a href="#" class="text-green-400 hover:text-green-500 transition duration-300 fade-in">View All
+                <span>&rarr;</span></a>
+        </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 product-grid">
-                    @foreach($featuredMedications as $index => $medication)
-                        <!-- Product {{ $index + 1 }} -->
-                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bounce-in"
-                             style="animation-delay: {{ $index * 0.1 }}s;">
-                            <div class="relative">
-                                @if($medication->badge)
-                                    <span class="absolute top-0 right-0 {{ $medication->badge['class'] }} text-white text-sm font-bold px-3 py-1 m-2 rounded">
-                            {{ $medication->badge['text'] }}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 product-grid">
+            @foreach($featuredMedications as $index => $medication)
+                <!-- Product {{ $index + 1 }} -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bounce-in"
+                     style="animation-delay: {{ $index * 0.1 }}s;">
+                    <div class="relative">
+                        @if($medication->badge)
+                            <span class="absolute top-0 right-0 {{ $medication->badge['class'] }} text-white text-sm font-bold px-3 py-1 m-2 rounded">
+                                {{ $medication->badge['text'] }}
+                            </span>
+                        @endif
+                        <img src="{{ URL::asset('/img/medications/' . ['pill1.jpg', 'pill2.jpg', 'pill3.jpg', 'pill4.jpg', 'capsule1.jpg', 'capsule2.jpg', 'tablet1.jpg', 'tablet2.jpg'][array_rand(['pill1.jpg', 'pill2.jpg', 'pill3.jpg', 'pill4.jpg', 'capsule1.jpg', 'capsule2.jpg', 'tablet1.jpg', 'tablet2.jpg'])]) }}"
+                             alt="{{ $medication->Name }}" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-green-400 font-bold">
+                            ${{ number_format($medication->DefaultUnitPrice, 2) }}
                         </span>
-                                @endif
-                                <img src="{{ URL::asset('/img/medications/' . ['pill1.jpg', 'pill2.jpg', 'pill3.jpg', 'pill4.jpg', 'capsule1.jpg', 'capsule2.jpg', 'tablet1.jpg', 'tablet2.jpg'][array_rand(['pill1.jpg', 'pill2.jpg', 'pill3.jpg', 'pill4.jpg', 'capsule1.jpg', 'capsule2.jpg', 'tablet1.jpg', 'tablet2.jpg'])]) }}"
-                                     alt="{{ $medication->Name }}" class="w-full h-64 object-cover">
+                        <h3 class="text-xl font-bold mt-2">{{ $medication->display_name }}</h3>
+                        <p class="text-gray-400 mt-2">
+                            @if($medication->GenericName && $medication->GenericName !== $medication->Name)
+                                Generic: {{ $medication->GenericName }}
+                            @else
+                                {{ $medication->manufacturer->Name ?? 'Quality medication' }} -
+                                {{ $medication->RequiresPrescription ? 'Prescription Required' : 'Over the Counter' }}
+                            @endif
+                        </p>
+                        <div class="flex items-center mt-4">
+                            <div class="flex text-yellow-400">
+                                @for($i = 1; $i <= 5; $i++)
+                                    @if($i <= 4)
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                        </svg>
+                                    @endif
+                                @endfor
                             </div>
-                            <div class="p-6">
-                    <span class="text-green-400 font-bold">
-                        ${{ number_format($medication->DefaultUnitPrice, 2) }}
-                    </span>
-                                <h3 class="text-xl font-bold mt-2">{{ $medication->display_name }}</h3>
-                                <p class="text-gray-400 mt-2">
-                                    @if($medication->GenericName && $medication->GenericName !== $medication->Name)
-                                        Generic: {{ $medication->GenericName }}
-                                    @else
-                                        {{ $medication->manufacturer->Name ?? 'Quality medication' }} -
-                                        {{ $medication->RequiresPrescription ? 'Prescription Required' : 'Over the Counter' }}
-                                    @endif
-                                </p>
-                                <div class="flex items-center mt-4">
-                                    <div class="flex text-yellow-400">
-                                        @for($i = 1; $i <= 5; $i++)
-                                            @if($i <= 4)
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                                </svg>
-                                            @else
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                                                </svg>
-                                            @endif
-                                        @endfor
-                                    </div>
-                                    <span class="text-gray-400 ml-2">({{ rand(15, 95) }})</span>
-                                </div>
+                            <span class="text-gray-400 ml-2">({{ rand(15, 95) }})</span>
+                        </div>
 
-                                <div class="mt-3">
-                                    @if($medication->Stock > 20)
-                                        <span class="text-green-400 text-sm">✓ In Stock ({{ $medication->Stock }} available)</span>
-                                    @elseif($medication->Stock > 0)
-                                        <span class="text-yellow-400 text-sm">⚠ Limited Stock ({{ $medication->Stock }} left)</span>
-                                    @else
-                                        <span class="text-red-400 text-sm">✗ Out of Stock</span>
-                                    @endif
-                                </div>
+                        <div class="mt-3">
+                            @if($medication->Stock > 20)
+                                <span class="text-green-400 text-sm">✓ In Stock ({{ $medication->Stock }} available)</span>
+                            @elseif($medication->Stock > 0)
+                                <span class="text-yellow-400 text-sm">⚠ Limited Stock ({{ $medication->Stock }} left)</span>
+                            @else
+                                <span class="text-red-400 text-sm">✗ Out of Stock</span>
+                            @endif
+                        </div>
 
-                                <button class="mt-6 w-full bg-indigo-900 hover:bg-indigo-800 text-white py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center {{ $medication->Stock <= 0 ? 'opacity-50 cursor-not-allowed' : '' }}"
-                                        {{ $medication->Stock <= 0 ? 'disabled' : '' }}
-                                        onclick="addToCart({{ $medication->MedicationID }})">
+                        @if($medication->Stock > 0)
+                            @auth
+                                <form action="{{ route('cart.add') }}" method="POST" class="mt-6">
+                                    @csrf
+                                    <input type="hidden" name="medication_id" value="{{ $medication->MedicationID }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit"
+                                            class="w-full bg-indigo-900 hover:bg-indigo-800 text-white py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                                        </svg>
+                                        Add to Cart
+                                    </button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}"
+                                   class="mt-6 w-full bg-indigo-900 hover:bg-indigo-800 text-white py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                                        <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />
                                     </svg>
-                                    {{ $medication->Stock <= 0 ? 'Out of Stock' : 'Add to Cart' }}
-                                </button>
-                            </div>
-                        </div>
-                    @endforeach
-
-                    @for($i = count($featuredMedications); $i < 4; $i++)
-                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg opacity-50"
-                             style="animation-delay: {{ $i * 0.1 }}s;">
-                            <div class="relative">
-                                <img src="{{ URL::asset('/img/placeholder-medication.jpg') }}"
-                                     alt="Coming Soon" class="w-full h-64 object-cover">
-                            </div>
-                            <div class="p-6">
-                                <span class="text-gray-500 font-bold">Coming Soon</span>
-                                <h3 class="text-xl font-bold mt-2 text-gray-500">New Product</h3>
-                                <p class="text-gray-500 mt-2">More medications coming soon...</p>
-                                <button disabled class="mt-6 w-full bg-gray-600 text-gray-400 py-2 px-4 rounded-lg cursor-not-allowed">
-                                    Coming Soon
-                                </button>
-                            </div>
-                        </div>
-                    @endfor
+                                    Add to Cart
+                                </a>
+                            @endauth
+                        @else
+                            <!-- Out of stock -->
+                            <button disabled
+                                    class="mt-6 w-full bg-gray-600 text-gray-400 py-2 px-4 rounded-lg cursor-not-allowed opacity-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                                </svg>
+                                Out of Stock
+                            </button>
+                        @endif
+                    </div>
                 </div>
-            </div>
-        </section>
+            @endforeach
+
+            @for($i = count($featuredMedications); $i < 4; $i++)
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg opacity-50"
+                     style="animation-delay: {{ $i * 0.1 }}s;">
+                    <div class="relative">
+                        <img src="{{ URL::asset('/img/placeholder-medication.jpg') }}"
+                             alt="Coming Soon" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-gray-500 font-bold">Coming Soon</span>
+                        <h3 class="text-xl font-bold mt-2 text-gray-500">New Product</h3>
+                        <p class="text-gray-500 mt-2">More medications coming soon...</p>
+                        <button disabled class="mt-6 w-full bg-gray-600 text-gray-400 py-2 px-4 rounded-lg cursor-not-allowed">
+                            Coming Soon
+                        </button>
+                    </div>
+                </div>
+            @endfor
+        </div>
+    </div>
+</section>
 
         <div class="container mx-auto px-4 mt-32">
                 <footer class="bg-gray-900 text-gray-300">
@@ -464,17 +487,6 @@
                                     Privacy Policy and consent to receive updates from our pharmacy.</p>
                             </div>
                         </div>
-
-                        <!-- Bottom Footer -->
-                        <!-- <div class="border-t border-gray-800 mt-8 pt-8">
-                            <div class="flex flex-col md:flex-row justify-between items-center">
-                                <div class="flex flex-wrap gap-4 mb-4 md:mb-0">
-                                    <a href="#"
-                                        class="text-sm text-gray-400 hover:text-white transition-colors duration-300">Privacy
-                                        Policy</a>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
 
                 </footer>

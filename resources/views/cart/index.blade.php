@@ -24,7 +24,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
-                    <span class="text-xl font-bold text-white">MediCare</span>
+                    <a href="{{ url('/') }}" class="text-xl font-bold text-white">MediCare</a>
                 </div>
                 <div class="flex items-center space-x-4">
                     <a href="{{ url('/notifications') }}" class="text-white hover:text-green-400">
@@ -133,8 +133,8 @@
                                             <button type="button" onclick="decrementQuantity(this)" class="bg-gray-700 text-gray-300 hover:bg-gray-600 h-8 w-8 rounded-l-lg flex items-center justify-center border border-gray-600">
                                                 <i class="fas fa-minus text-xs"></i>
                                             </button>
-                                            <input type="number" name="quantity" id="quantity-{{ $item->id }}" min="1" value="{{ $item->quantity }}" 
-                                                class="h-8 w-12 border-y border-gray-600 text-center bg-gray-700 text-white" 
+                                            <input type="number" name="quantity" id="quantity-{{ $item->id }}" min="1" value="{{ $item->quantity }}"
+                                                class="h-8 w-12 border-y border-gray-600 text-center bg-gray-700 text-white"
                                                 onchange="this.form.submit()">
                                             <button type="button" onclick="incrementQuantity(this)" class="bg-gray-700 text-gray-300 hover:bg-gray-600 h-8 w-8 rounded-r-lg flex items-center justify-center border border-gray-600">
                                                 <i class="fas fa-plus text-xs"></i>
@@ -184,7 +184,7 @@
                             <span class="text-green-400">${{ number_format($total * 1.1, 2) }}</span>
                         </div>
                     </div>
-                    
+
                     <div class="mt-6">
                         <div class="bg-indigo-900/30 rounded-lg p-4 border border-indigo-800/50 mb-4">
                             <div class="flex items-start">
@@ -206,29 +206,29 @@
                     <h2 class="text-xl font-bold mb-4 text-green-400">
                         <i class="fas fa-credit-card mr-2"></i> Checkout
                     </h2>
-                    
+
                     <form action="{{ route('cart.checkout') }}" method="POST">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div>
                                 <label for="shipping_name" class="block text-sm font-medium text-gray-400 mb-2">Full Name</label>
-                                <input type="text" id="shipping_name" name="shipping_name" value="{{ Auth::user()->name }}" 
+                                <input type="text" id="shipping_name" name="shipping_name" value="{{ Auth::user()->name }}"
                                     class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
                             </div>
                             <div>
                                 <label for="shipping_phone" class="block text-sm font-medium text-gray-400 mb-2">Phone Number</label>
-                                <input type="text" id="shipping_phone" name="shipping_phone" value="{{ Auth::user()->phone ?? '' }}" 
+                                <input type="text" id="shipping_phone" name="shipping_phone" value="{{ Auth::user()->phone ?? '' }}"
                                     class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
                             </div>
                         </div>
-                        
+
                         <div class="mb-6">
                             <label for="shipping_address" class="block text-sm font-medium text-gray-400 mb-2">Shipping Address</label>
-                            <textarea id="shipping_address" name="shipping_address" rows="3" 
+                            <textarea id="shipping_address" name="shipping_address" rows="3"
                                 class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
                                 required>{{ Auth::user()->address ?? '' }}</textarea>
                         </div>
-                        
+
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-400 mb-3">Payment Method</label>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -255,7 +255,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-8">
 
                             {{-- TODO --}}
@@ -287,7 +287,7 @@
             input.value = currentValue + 1;
             input.form.submit();
         }
-        
+
         function decrementQuantity(button) {
             const input = button.nextElementSibling;
             const currentValue = parseInt(input.value);

@@ -7,12 +7,11 @@ use App\Http\Middleware\AdminMiddleWare;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 
-// Route::get('/', function () {
-//     return view('index');
-// })->name('index');
-
-//Index
-Route::get('/', [HomeController::class, 'index'])->name('index');
+// unauthenticated users
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/medication', 'showMedications')->name('medication.index');
+});
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

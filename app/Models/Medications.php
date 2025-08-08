@@ -3,12 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Medications extends Model
 {
+
+    /**
+     * @var string
+     */
     protected $primaryKey = 'MedicationID';
+
+    /**
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'Name',
         'GenericName',
@@ -20,7 +32,7 @@ class Medications extends Model
         'Stock'
     ];
 
-    public function manufacturer()
+    public function manufacturer(): BelongsTo
     {
         return $this->belongsTo(Manufacturers::class, 'ManufacturerID', 'ManufacturerID');
     }

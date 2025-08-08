@@ -16,4 +16,12 @@ class HomeController extends Controller
 
         return view('index', compact('featuredMedications'));
     }
+
+    public function showMedications()
+    {
+        $medications = Medications::with('manufacturer')
+            ->paginate(20);
+
+        return view('medication', compact('medications'));
+    }
 }
