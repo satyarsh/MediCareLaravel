@@ -23,4 +23,3 @@ yarn-error.log
 /.zed
 TODO.md
 sql.sql
-app/Http/Controllers/CartController.php

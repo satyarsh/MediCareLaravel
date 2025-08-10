@@ -14,7 +14,7 @@ class CartItems extends Model
      */
     protected $fillable = [
         'PatientID',
-        'MedicineId',
+        'MedicationID',
         'Quantity',
         'Price',
     ];

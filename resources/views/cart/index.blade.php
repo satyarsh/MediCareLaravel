@@ -48,9 +48,7 @@
                 <i class="fas fa-shopping-cart mr-2"></i> My Cart
             </h1>
 
-            {{-- TODO --}}
-            {{-- {{ route('medicines.index') }} --}}
-            <a href="#" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition flex items-center">
+            <a href="{{ route('medication.index') }}" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition flex items-center">
                 <i class="fas fa-pills mr-2"></i> Continue Shopping
             </a>
         </div>
@@ -75,9 +73,7 @@
                 <p class="text-xl mb-4">Your cart is empty</p>
                 <p class="text-gray-400 mb-6">Add medicines to your cart and they will appear here</p>
 
-                {{-- TODO --}}
-                {{-- {{ route('medicines.index') }} --}}
-                <a href="#" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition inline-flex items-center">
+                <a href="{{ route('medication.index') }}" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition inline-flex items-center">
                     <i class="fas fa-pills mr-2"></i> Browse Medicines
                 </a>
             </div>
@@ -111,15 +107,16 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="h-12 w-12 flex-shrink-0 rounded-lg bg-indigo-900/30 flex items-center justify-center mr-4">
-                                                @if($item->medicine->image)
-                                                    <img src="{{ asset('storage/'.$item->medicine->image) }}" alt="{{ $item->medicine->name }}" class="h-12 w-12 rounded-lg object-cover">
+                                                @if($item->medication->image)
+                                                    <img src="{{ asset('storage/'.$item->medication->image) }}" alt="{{ $item->medication->name }}" class="h-12 w-12 rounded-lg object-cover">
                                                 @else
                                                     <i class="fas fa-capsules text-green-400 text-xl"></i>
                                                 @endif
                                             </div>
                                             <div>
-                                                <div class="text-base font-medium">{{ $item->medicine->name }}</div>
-                                                <div class="text-sm text-gray-400">{{ Str::limit($item->medicine->description, 40) }}</div>
+                                                <div class="text-base font-medium">{{ $item->medication->name }}</div>
+                                            {{--<div class="text-sm text-gray-400">{{ Str::limit($item->medication->description, 40) }}</div>--}}
+                                                <div class="text-sm text-gray-400">Description Goes Here</div>
                                             </div>
                                         </div>
                                     </td>
@@ -257,10 +254,7 @@
                         </div>
 
                         <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-8">
-
-                            {{-- TODO --}}
-                            {{-- {{ route('medicines.index') }} --}}
-                            <a href="#" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition text-center flex-1 flex items-center justify-center">
+                            <a href="{{ route('medication.index') }}" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition text-center flex-1 flex items-center justify-center">
                                 <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
                             </a>
                             <button type="submit" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition font-medium flex-1 flex items-center justify-center">

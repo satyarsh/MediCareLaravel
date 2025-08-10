@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Patients;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -11,6 +12,10 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+
+    //Added this in order to not get duplication
+    private static array $usedPatientIds = [];
+
     /**
      * The current password being used by the factory.
      */
@@ -23,12 +28,24 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
+        //$patient = Patients::inRandomOrder()->first();
+        // $first      = $patient->FirstName;
+        // $last       = $patient->LastName;
+        // $randomNum  = fake()->numberBetween(1, 99);
+
+        $patient = Patients::whereNotIn('PatientID', static::$usedPatientIds)
+            ->inRandomOrder()
+            ->first();
+
+        static::$usedPatientIds[] = $patient->PatientID;
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'name' => "{$patient->FirstName} {$patient->LastName}",
+            'email' => fake()->unique()->safeEmail(), // using faker for now till I find a unique algo for creating fake emails
+            'email_verified_at'  => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'remember_token'     => Str::random(10),
         ];
     }
 
@@ -37,7 +54,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

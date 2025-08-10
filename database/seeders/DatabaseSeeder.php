@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        //Patients
+        Patients::factory(20)->create();
+
         //Using factories/UserFactory for this
         User::factory(20)->create();
 
@@ -36,15 +40,12 @@ class DatabaseSeeder extends Seeder
         //ManufacturerSeeder
         /* Doesn't need one because it's being generated on the MedicationSeeder! */
 
-        //Patients
-        Patients::factory(20)->create();
-
         //Doctors
         Doctors::factory(20)->create();
 
         //Prescriptions
         Prescriptions::factory(20)->create();
-        
+
 
 
     }
