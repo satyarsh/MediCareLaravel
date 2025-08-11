@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Medications extends Model
 {
 
+    
     /**
      * @var string
      */
     protected $primaryKey = 'MedicationID';
 
+    public $incrementing = true;
+    protected $keyType = 'int';
+    
     /**
      * @var bool
      */
@@ -35,6 +39,11 @@ class Medications extends Model
     public function manufacturer(): BelongsTo
     {
         return $this->belongsTo(Manufacturers::class, 'ManufacturerID', 'ManufacturerID');
+    }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItems::class, 'MedicationID', 'MedicationID');
     }
 
     public function getDisplayNameAttribute()

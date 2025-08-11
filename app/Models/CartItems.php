@@ -10,14 +10,28 @@ class CartItems extends Model
     use HasFactory;
 
     /**
+     * @var string
+     */
+    protected $primaryKey = 'CartItemID';
+
+    protected $table = 'cart_items';
+    public $incrementing = true;
+    protected $keyType = 'int';
+
+    /**
      * @var array
      */
     protected $fillable = [
-        'PatientID',
+        'user_id',
         'MedicationID',
         'Quantity',
         'Price',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     public function medication()
     {

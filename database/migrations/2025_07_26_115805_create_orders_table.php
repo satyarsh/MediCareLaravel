@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id('OrderID');
-            $table->unsignedBigInteger('PatientID');
-            $table->foreign('PatientID')->references('PatientID')->on('patients');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('OrderNumber')->unique();
             $table->decimal('TotalAmount', 10, 2);
             $table->enum('Status', ['pending', 'processing', 'shipped', 'completed', 'cancelled'])->default('pending');

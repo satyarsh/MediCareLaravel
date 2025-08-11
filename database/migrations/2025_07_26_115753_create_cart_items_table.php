@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id('CartItemID');
-            $table->unsignedBigInteger('PatientID');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('MedicationID');
-            $table->foreign('PatientID')->references('PatientID')->on('patients');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('MedicationID')->references('MedicationID')->on('medications');
             $table->unsignedInteger('Quantity');
             $table->decimal('Price', 8, 2); // Price at the time of adding to cart

@@ -13,7 +13,6 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/medication', 'showMedications')->name('medication.index');
 });
 
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('guest')->controller(AuthController::class)->group(function () {
@@ -31,14 +30,12 @@ Route::middleware('auth')->controller(AuthController::class)->group(function () 
 Route::middleware('auth')->controller(CartController::class)->group(function () {
     Route::get('/cart', 'index')->name('cart.index');
     Route::post('/cart/add', 'add')->name('cart.add');
-    Route::patch('/cart/update/{cartItemId}', 'update')->name('cart.update');
-    Route::delete('/cart/remove/{cartItemId}', 'remove')->name('cart.remove');
-    Route::post('/cart/checkout', 'checkout')->name('cart.checkout');
-
-    Route::post('/checkout', 'checkout')->name('cart.checkout');
-    // Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::put('/cart/{cartItemId}', 'update')->name('cart.update');
+    Route::delete('/cart/{cartItemId}', 'remove')->name('cart.remove');
+    Route::delete('/cart', 'clear')->name('cart.clear');
+    Route::get('/cart/checkout', 'showCheckout')->name('cart.checkout');
+    Route::post('/cart/checkout', 'checkout')->name('cart.process');
 });
-
 
 //Admin
 Route::middleware('auth')->group(function () {

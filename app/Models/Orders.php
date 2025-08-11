@@ -12,10 +12,19 @@ class Orders extends Model
     use HasFactory;
 
     /**
+     * @var string
+     */
+    protected $primaryKey = 'OrderID';
+
+    protected $table = 'orders';
+    public $incrementing = true;
+    protected $keyType = 'int';
+
+    /**
      * @var array
      */
     protected $fillable = [
-        'PatientID',
+        'user_id',
         'OrderNumber',
         'TotalAmount',
         'Status',

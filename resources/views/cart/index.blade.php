@@ -83,75 +83,81 @@
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-700">
                         <thead class="bg-gray-700">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Product
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Price
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Quantity
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Subtotal
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Actions
-                                </th>
-                            </tr>
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                Product
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                Price
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                Quantity
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                Subtotal
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                Actions
+                            </th>
+                        </tr>
                         </thead>
                         <tbody class="bg-gray-800 divide-y divide-gray-700">
-                            @foreach($cartItems as $item)
-                                <tr class="hover:bg-gray-700/50 transition">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-12 w-12 flex-shrink-0 rounded-lg bg-indigo-900/30 flex items-center justify-center mr-4">
-                                                @if($item->medication->image)
-                                                    <img src="{{ asset('storage/'.$item->medication->image) }}" alt="{{ $item->medication->name }}" class="h-12 w-12 rounded-lg object-cover">
+                        @foreach($cartItems as $item)
+                            <tr class="hover:bg-gray-700/50 transition">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="h-12 w-12 flex-shrink-0 rounded-lg bg-indigo-900/30 flex items-center justify-center mr-4">
+                                            @if($item->medication->image ?? false)
+                                                <img src="{{ asset('storage/'.$item->medication->image) }}" alt="{{ $item->medication->Name }}" class="h-12 w-12 rounded-lg object-cover">
+                                            @else
+                                                <i class="fas fa-capsules text-green-400 text-xl"></i>
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <div class="text-base font-medium">{{ $item->medication->Name }}</div>
+                                            {{-- <div class="text-sm text-gray-400">{{ Str::limit($item->medication->description, 40) }}</div> --}}
+                                            <div class="text-sm text-gray-400">
+                                                @if($item->medication->GenericName && $item->medication->GenericName !== $item->medication->Name)
+                                                    Generic: {{ $item->medication->GenericName }}
                                                 @else
-                                                    <i class="fas fa-capsules text-green-400 text-xl"></i>
+                                                    Quality medication
                                                 @endif
                                             </div>
-                                            <div>
-                                                <div class="text-base font-medium">{{ $item->medication->name }}</div>
-                                            {{--<div class="text-sm text-gray-400">{{ Str::limit($item->medication->description, 40) }}</div>--}}
-                                                <div class="text-sm text-gray-400">Description Goes Here</div>
-                                            </div>
                                         </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-base text-green-400 font-medium">
-                                        ${{ number_format($item->price, 2) }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <form action="{{ route('cart.update', $item->id) }}" method="POST" class="flex items-center">
-                                            @csrf
-                                            @method('PATCH')
-                                            <button type="button" onclick="decrementQuantity(this)" class="bg-gray-700 text-gray-300 hover:bg-gray-600 h-8 w-8 rounded-l-lg flex items-center justify-center border border-gray-600">
-                                                <i class="fas fa-minus text-xs"></i>
-                                            </button>
-                                            <input type="number" name="quantity" id="quantity-{{ $item->id }}" min="1" value="{{ $item->quantity }}"
-                                                class="h-8 w-12 border-y border-gray-600 text-center bg-gray-700 text-white"
-                                                onchange="this.form.submit()">
-                                            <button type="button" onclick="incrementQuantity(this)" class="bg-gray-700 text-gray-300 hover:bg-gray-600 h-8 w-8 rounded-r-lg flex items-center justify-center border border-gray-600">
-                                                <i class="fas fa-plus text-xs"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-base text-gray-300">
-                                        ${{ number_format($item->price * $item->quantity, 2) }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right">
-                                        <form action="{{ route('cart.remove', $item->id) }}" method="POST" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="bg-red-900/50 hover:bg-red-900 text-red-400 p-2 rounded-lg transition">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-base text-green-400 font-medium">
+                                    ${{ number_format($item->Price, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <form action="{{ route('cart.update', $item->CartItemID) }}" method="POST" class="flex items-center">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="button" onclick="decrementQuantity(this)" class="bg-gray-700 text-gray-300 hover:bg-gray-600 h-8 w-8 rounded-l-lg flex items-center justify-center border border-gray-600">
+                                            <i class="fas fa-minus text-xs"></i>
+                                        </button>
+                                        <input type="number" name="quantity" id="quantity-{{ $item->CartItemID }}" min="1" max="{{ $item->medication->Stock }}" value="{{ $item->Quantity }}"
+                                               class="h-8 w-12 border-y border-gray-600 text-center bg-gray-700 text-white"
+                                               onchange="this.form.submit()">
+                                        <button type="button" onclick="incrementQuantity(this)" class="bg-gray-700 text-gray-300 hover:bg-gray-600 h-8 w-8 rounded-r-lg flex items-center justify-center border border-gray-600">
+                                            <i class="fas fa-plus text-xs"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-base text-gray-300">
+                                    ${{ number_format($item->Price * $item->Quantity, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <form action="{{ route('cart.remove', $item->CartItemID) }}" method="POST" class="inline" onsubmit="return confirm('Remove this item from cart?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-900/50 hover:bg-red-900 text-red-400 p-2 rounded-lg transition">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -196,6 +202,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Clear Cart Button -->
+                    <form action="{{ route('cart.clear') }}" method="POST" onsubmit="return confirm('Clear entire cart?')" class="mt-4">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition">
+                            <i class="fas fa-trash mr-2"></i> Clear Cart
+                        </button>
+                    </form>
                 </div>
 
                 <!-- Checkout Form -->
@@ -204,26 +219,26 @@
                         <i class="fas fa-credit-card mr-2"></i> Checkout
                     </h2>
 
-                    <form action="{{ route('cart.checkout') }}" method="POST">
+                    <form action="{{ route('cart.process') }}" method="POST">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div>
                                 <label for="shipping_name" class="block text-sm font-medium text-gray-400 mb-2">Full Name</label>
                                 <input type="text" id="shipping_name" name="shipping_name" value="{{ Auth::user()->name }}"
-                                    class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
+                                       class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
                             </div>
                             <div>
                                 <label for="shipping_phone" class="block text-sm font-medium text-gray-400 mb-2">Phone Number</label>
                                 <input type="text" id="shipping_phone" name="shipping_phone" value="{{ Auth::user()->phone ?? '' }}"
-                                    class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
+                                       class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
                             </div>
                         </div>
 
                         <div class="mb-6">
                             <label for="shipping_address" class="block text-sm font-medium text-gray-400 mb-2">Shipping Address</label>
                             <textarea id="shipping_address" name="shipping_address" rows="3"
-                                class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
-                                required>{{ Auth::user()->address ?? '' }}</textarea>
+                                      class="w-full rounded-lg border-gray-700 bg-gray-700 text-white focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
+                                      required>{{ Auth::user()->address ?? '' }}</textarea>
                         </div>
 
                         <div class="mb-6">

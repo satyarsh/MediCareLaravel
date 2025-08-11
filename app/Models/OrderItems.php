@@ -4,24 +4,37 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderItems extends Model
 {
     use HasFactory;
 
     /**
+     * @var string
+     */
+    protected $primaryKey = 'OrderItemID';
+
+    protected $table = 'order_items';
+    public $incrementing = true;
+    protected $keyType = 'int';
+
+    /**
      * @var array
      */
     protected $fillable = [
         'OrderID',
-        'MedicineID',
+        'MedicationID',
         'Quantity',
-        'Price',
+        'Price'
     ];
 
-    public function medication(): BelongsTo
+    public function order()
     {
-        return $this->belongsTo(Medications::class);
+        return $this->belongsTo(Orders::class, 'OrderID', 'OrderID');
+    }
+
+    public function medication()
+    {
+        return $this->belongsTo(Medications::class, 'MedicationID', 'MedicationID');
     }
 }
