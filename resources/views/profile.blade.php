@@ -113,33 +113,40 @@
                     </div>
                 </div>
 
-                <!-- Prescriptions Section -->
-                <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 slide-up">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold text-green-400">
-                            <i class="fas fa-prescription-bottle-alt mr-2"></i> Current Prescriptions
-                        </h2>
-                        <a href="{{ url('/prescriptions') }}" class="text-sm text-green-400 hover:text-green-300">View All</a>
-                    </div>
-                    <div class="space-y-4">
-                        @forelse([1,2] as $prescription)
-                            <div class="p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h3 class="font-medium">Amoxicillin 500mg</h3>
-                                        <p class="text-sm text-gray-400">Take 1 capsule three times daily</p>
-                                        <p class="text-sm text-gray-400">Refills: 2 remaining</p>
-                                    </div>
-                                    <button class="text-green-400 hover:text-green-300">
-                                        <i class="fas fa-sync-alt"></i> Refill
-                                    </button>
-                                </div>
-                            </div>
-                        @empty
-                            <p class="text-gray-400">No active prescriptions.</p>
-                        @endforelse
-                    </div>
+            <!-- Prescriptions Section -->
+            <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 slide-up">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-green-400">
+                        <i class="fas fa-prescription-bottle-alt mr-2"></i> Current Prescriptions
+                    </h2>
+                    <a href="{{ url('/prescriptions') }}" class="text-sm text-green-400 hover:text-green-300">View All</a>
                 </div>
+                <div class="space-y-4">
+                    @forelse($prescriptions as $prescription)
+                        <div class="p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium">
+                                        {{ $prescription->medication->Name ?? 'Error Med Not Found' }}
+                                        {{ $prescription->Dosage }}
+                                    </h3>
+                                    <p class="text-sm text-gray-400">
+                                        Take as prescribed by Dr. {{ $prescription->doctor->LastName ?? 'Unknown' }}
+                                    </p>
+                                    <p class="text-sm text-gray-400">
+                                        Refills: {{ $prescription->RefillsRemaining }} remaining
+                                    </p>
+                                </div>
+                                <button class="text-green-400 hover:text-green-300">
+                                    <i class="fas fa-sync-alt"></i> Refill
+                                </button>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-gray-400">No active prescriptions.</p>
+                    @endforelse
+                </div>
+            </div>
 
                 <!-- Upcoming Appointments -->
                 <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 slide-up">

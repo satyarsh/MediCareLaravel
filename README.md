@@ -2,19 +2,14 @@
 
 A web application for managing and operating a pharmacy, built with Laravel 12 and styled with Tailwind CSS.
 
-## About The Project
-Coming Soon!
 
 ## Features
-Coming Soon!
 
-<!-- *   **Prescription Management:**  Upload, view, and process prescriptions securely.
-*   **Inventory Management:** Track stock levels, add new products, and manage suppliers.
-*   **Product Catalog:** Browse and search for medications and health products.
-*   **Online Ordering:**  Customers can place orders online.
-*   **User Authentication:** Secure registration and login for pharmacists, staff, and customers.
-*   **Admin Dashboard:**  A central dashboard for managing all aspects of the pharmacy.
-*   **Reporting:** Generate reports on sales, inventory, and other key metrics. -->
+*   **Prescription Management:**  View Prescriptons on /profile for each user or in /prescriptions.
+*   **Inventory Management:** Track stock levels, both in /profile end-point or in /medications.
+*   **Product Catalog:** Browse and search for medications.
+*   **User Authentication:** Secure registration and login for admin and general users.
+*   **Admin Dashboard:**  A central dashboard for managing all aspects of the pharmacy. (/admin end-point)
 
 ## Getting Started
 You can use docker-compose to deploy the MariaDB database. <br>check the `docker/` folder for the docker-compose.yaml

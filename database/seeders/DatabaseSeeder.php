@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         Patients::factory(20)->create();
 
         //Using factories/UserFactory for this
-        User::factory(20)->create();
+        User::factory(19)->create();
 
         //Calling AdminUserSeeder from seeders manually otherwise it won't work!
         $this->call([
@@ -45,8 +45,5 @@ class DatabaseSeeder extends Seeder
 
         //Prescriptions
         Prescriptions::factory(20)->create();
-
-
-
     }
 }

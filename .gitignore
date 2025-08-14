@@ -23,3 +23,4 @@ yarn-error.log
 /.zed
 TODO.md
 sql.sql
+/docker/data
