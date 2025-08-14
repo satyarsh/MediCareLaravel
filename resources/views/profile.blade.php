@@ -61,10 +61,10 @@
                             <i class="fas fa-star mr-1"></i> Premium Member
                         </p>
                         <div class="mt-6 flex space-x-3">
-                            <a href="{{ url('/edit-profile') }}" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition">
+                            <a href="#" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition">
                                 <i class="fas fa-edit mr-1"></i> Edit Profile
                             </a>
-                            <a href="{{ url('/settings') }}" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
+                            <a href="#" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
                                 <i class="fas fa-cog mr-1"></i> Settings
                             </a>
                         </div>
@@ -73,15 +73,15 @@
                     <div class="mt-8 space-y-4">
                         <div class="flex items-center">
                             <i class="fas fa-phone-alt w-6 text-gray-400"></i>
-                            <span class="ml-2">{{ Auth::user()->phone ?? '+1 (555) 123-4567' }}</span>
+                            <span class="ml-2">{{ Auth::user()->patient->PhoneNumber ?? '+1 (555) 123-4567' }}</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-map-marker-alt w-6 text-gray-400"></i>
-                            <span class="ml-2">{{ Auth::user()->address ?? 'New York, USA' }}</span>
+                            <span class="ml-2">{{ Auth::user()->patient->HomeAddress ?? 'New York, USA' }}</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-calendar-alt w-6 text-gray-400"></i>
-                            <span class="ml-2">Member since {{ Auth::user()->created_at->format('M Y') }}</span>
+                            <span class="ml-2">Member since {{ Auth::user()->patient->created_at ? Auth::user()->patient->created_at->format('M Y') : 'N/A' }}</span>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                         <h2 class="text-xl font-bold text-green-400">
                             <i class="fas fa-notes-medical mr-2"></i> Medical Records
                         </h2>
-                        <a href="{{ url('/medical-records') }}" class="text-sm text-green-400 hover:text-green-300">View All</a>
+                        <a href="#" class="text-sm text-green-400 hover:text-green-300">View All</a>
                     </div>
                     <div class="space-y-4">
                         @forelse([1,2] as $record)
@@ -154,7 +154,7 @@
                         <h2 class="text-xl font-bold text-green-400">
                             <i class="fas fa-calendar-check mr-2"></i> Upcoming Appointments
                         </h2>
-                        <a href="{{ url('/appointments') }}" class="text-sm text-green-400 hover:text-green-300">Schedule New</a>
+                        <a href="#" class="text-sm text-green-400 hover:text-green-300">Schedule New</a>
                     </div>
                     <div class="space-y-4">
                         @if(rand(0,1))

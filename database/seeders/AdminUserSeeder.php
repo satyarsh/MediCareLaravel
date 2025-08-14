@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +22,16 @@ class AdminUserSeeder extends Seeder
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
+        ]);
+
+        DB::table('patients')->insert([
+            'FirstName' => 'adminFirstName',
+            'LastName' => 'adminLastName',
+            'DateOfBirth' => fake()->date(),
+            'PhoneNumber' => fake('fa_IR')->unique()->phoneNumber(),
+            'HomeAddress' => 'Oh No Doxxed!',
+            'created_at' => '2018-08-10 13:37:27.000',
+            'updated_at' => '2021-06-03 13:37:27.000',
         ]);
 
     }

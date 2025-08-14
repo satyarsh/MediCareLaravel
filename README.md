@@ -11,6 +11,9 @@ A web application for managing and operating a pharmacy, built with Laravel 12 a
 *   **User Authentication:** Secure registration and login for admin and general users.
 *   **Admin Dashboard:**  A central dashboard for managing all aspects of the pharmacy. (/admin end-point)
 
+## End-Points
+![endpoints](endpoints.png)
+
 ## Getting Started
 You can use docker-compose to deploy the MariaDB database. <br>check the `docker/` folder for the docker-compose.yaml
 ```bash

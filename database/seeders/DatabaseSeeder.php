@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
     {
 
         //Patients
-        Patients::factory(20)->create();
+        Patients::factory(19)->create();
 
         //Using factories/UserFactory for this
         User::factory(19)->create();

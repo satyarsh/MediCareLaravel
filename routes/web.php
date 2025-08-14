@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleWare;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrescriptionController;
 
 // unauthenticated users
 Route::controller(HomeController::class)->group(function () {
@@ -36,6 +37,12 @@ Route::middleware('auth')->controller(CartController::class)->group(function () 
     Route::get('/cart/checkout', 'showCheckout')->name('cart.checkout');
     Route::post('/cart/checkout', 'checkout')->name('cart.process');
 });
+
+//Prescription
+Route::middleware('auth')->controller(PrescriptionController::class)->group(function () {
+    Route::get('/prescriptions', 'index')->name('prescriptions.index');
+});
+
 
 //Admin
 Route::middleware('auth')->group(function () {
