@@ -13,7 +13,7 @@
             <div class="p-4">
                 <h1 class="text-xl font-bold text-white">Admin Panel</h1>
             </div>
-            
+
             <nav class="mt-6">
                 <div class="px-4 py-3 bg-gray-700 text-white rounded-md mx-3 flex items-center">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -21,7 +21,7 @@
                     </svg>
                     Dashboard
                 </div>
-                
+
                 @foreach([
                     ['Users', 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'],
                     ['Products', 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4'],
@@ -36,7 +36,7 @@
                     {{ $title }}
                 </a>
                 @endforeach
-                
+
 
                 <form action="{{ url('/logout') }}" method="POST">
                     @csrf
@@ -56,7 +56,7 @@
         <main class="flex-1 p-8">
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-2xl font-semibold">Dashboard Overview</h1>
-                
+
                 <div class="flex items-center">
                     <div class="relative mr-4">
                         <input type="text" placeholder="Search..." class="bg-gray-800 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -64,7 +64,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </div>
-                    
+
                     <div class="relative">
                         <button class="flex items-center bg-gray-800 rounded-lg px-4 py-2 focus:outline-none">
                             <img src="https://ui-avatars.com/api/?name=Admin+User" class="w-6 h-6 rounded-full mr-2" alt="User">
@@ -143,12 +143,14 @@
                         <button class="text-sm text-blue-400 hover:text-blue-300">View All</button>
                     </div>
                     <div class="space-y-4">
-                        @foreach(['John Doe', 'Jane Smith', 'Robert Johnson', 'Emily Davis', 'Michael Wilson'] as $name)
+                        @foreach($users as $user)
                         <div class="flex items-center">
-                            <img src="https://ui-avatars.com/api/?name={{ str_replace(' ', '+', $name) }}" class="w-10 h-10 rounded-full mr-4" alt="{{ $name }}">
+                            <img src="https://ui-avatars.com/api/?name={{ str_replace(' ', '+', $user->name) }}"
+                                 class="w-10 h-10 rounded-full mr-4"
+                                 alt="{{ $user->name }}">
                             <div>
-                                <p class="text-gray-200">{{ $name }}</p>
-                                <p class="text-sm text-gray-400">{{ strtolower(str_replace(' ', '.', $name)) }}@example.com</p>
+                                <p class="text-gray-200">{{ $user->name }}</p>
+                                <p class="text-sm text-gray-400">{{ strtolower(str_replace(' ', '.', $user->name)) }}@example.com</p>
                             </div>
                             <div class="ml-auto">
                                 <span class="px-2 py-1 text-xs rounded-full bg-green-500 bg-opacity-20 text-green-400">Active</span>
@@ -157,7 +159,8 @@
                         @endforeach
                     </div>
                 </div>
-            </div>
+
+            </section>
         </main>
     </div>
 </body>

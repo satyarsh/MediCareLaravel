@@ -40,7 +40,7 @@ Route::middleware('auth')->controller(CartController::class)->group(function () 
 
 //Prescription
 Route::middleware('auth')->controller(PrescriptionController::class)->group(function () {
-    Route::get('/prescriptions', 'index')->name('prescriptions.index');
+    Route::get('/prescription', 'index')->name('prescriptions.index');
 });
 
 
