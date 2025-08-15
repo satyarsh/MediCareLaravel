@@ -159,8 +159,6 @@
                         @endforeach
                     </div>
                 </div>
-
-            </section>
         </main>
     </div>
 </body>

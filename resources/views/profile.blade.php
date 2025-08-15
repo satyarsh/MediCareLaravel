@@ -81,7 +81,7 @@
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-calendar-alt w-6 text-gray-400"></i>
-                            <span class="ml-2">Member since {{ Auth::user()->patient->created_at ? Auth::user()->patient->created_at->format('M Y') : 'N/A' }}</span>
+                            <span class="ml-2">Member since {{ Auth::user()->patient?->created_at?->format('M Y') ?? Auth::user()->created_at?->format('M Y') ?? 'N/A' }}</span>
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                     <h2 class="text-xl font-bold text-green-400">
                         <i class="fas fa-prescription-bottle-alt mr-2"></i> Current Prescriptions
                     </h2>
-                    <a href="{{ url('/prescriptions') }}" class="text-sm text-green-400 hover:text-green-300">View All</a>
+                    <a href="{{ url('/prescription') }}" class="text-sm text-green-400 hover:text-green-300">View All</a>
                 </div>
                 <div class="space-y-4">
                     @forelse($prescriptions as $prescription)

@@ -38,6 +38,8 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         $user = User::create($validated);
